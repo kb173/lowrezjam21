@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tree.png-d30bba3a236680e66c15289471085af3.stex"
+path="res://.import/rails_right.png-c4862bf22efa5195e34e5fd8e421b93f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Tiles/tree.png"
-dest_files=[ "res://.import/tree.png-d30bba3a236680e66c15289471085af3.stex" ]
+source_file="res://Resources/Graphics/rails_right.png"
+dest_files=[ "res://.import/rails_right.png-c4862bf22efa5195e34e5fd8e421b93f.stex" ]
 
 [params]
 

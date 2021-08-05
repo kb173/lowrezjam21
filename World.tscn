@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Resources/Tiles/grass.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Graphics/grass.png" type="Texture" id=1]
 [ext_resource path="res://Rails/RailsStraight.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Rails/RailsRight.tscn" type="PackedScene" id=4]
