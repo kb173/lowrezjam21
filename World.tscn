@@ -37,14 +37,17 @@ tile_data = PoolIntArray( -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 
 position = Vector2( 32, 48 )
 
 [node name="RailsStraight2" parent="PlayerStart" instance=ExtResource( 2 )]
+z_index = 0
 script = SubResource( 2 )
 
 [node name="RailsStraight3" parent="PlayerStart" instance=ExtResource( 2 )]
 position = Vector2( 0, -8 )
+z_index = 0
 script = SubResource( 2 )
 
 [node name="RailsStraight" parent="PlayerStart" instance=ExtResource( 2 )]
 position = Vector2( 0, 8 )
+z_index = 0
 script = SubResource( 2 )
 
 [node name="Player" parent="PlayerStart" instance=ExtResource( 3 )]
@@ -52,3 +55,9 @@ position = Vector2( 4, 12 )
 
 [node name="RailsRight" parent="PlayerStart" instance=ExtResource( 4 )]
 position = Vector2( 0, -16 )
+z_index = 0
+
+[node name="RailsStraight4" parent="PlayerStart" instance=ExtResource( 2 )]
+position = Vector2( 16, -16 )
+rotation = 1.57079
+z_index = 0
