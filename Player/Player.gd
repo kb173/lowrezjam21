@@ -23,7 +23,9 @@ func get_next_rails():
 
 
 func _set_position_for_rails(rails_node):
-	position = rails_node.position + rails_node.get_node("MovementPath").curve.interpolate(0, current_rails_progress)
+	var curve = rails_node.get_node("MovementPath").curve
+	
+	position = rails_node.position + curve.interpolate_baked(current_rails_progress * curve.get_baked_length())
 
 
 func _process(delta):
