@@ -4,24 +4,22 @@
 [ext_resource path="res://Rails/Rails.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Curve2D" id=1]
+bake_interval = 0.5
 _data = {
-"points": PoolVector2Array( -0.013139, 3.03511, 0.013139, -3.03511, 4, 8, -3.07453, 0.013139, 3.07453, -0.013139, 8, 4 )
+"points": PoolVector2Array( 0.0861858, 3.34964, -0.0861858, -3.34964, 0, 4, -3.43872, -0.119294, 3.43872, 0.119294, 4, 0 )
 }
 
 [node name="RailsRight" instance=ExtResource( 2 )]
-z_index = 9
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 4.00002, 4.00002 )
-z_index = 0
 texture = ExtResource( 1 )
 
 [node name="MovementPath" parent="." index="1"]
 curve = SubResource( 1 )
 
 [node name="NewRailOrigin" parent="." index="2"]
-position = Vector2( 8.00002, 4.00002 )
+position = Vector2( 4, 0 )
 rotation = 1.57079
 
 [node name="CollisionShape2D" parent="OnRailArea" index="0"]
-position = Vector2( 4, 4 )
+position = Vector2( 0, 0 )

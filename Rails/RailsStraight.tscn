@@ -5,22 +5,19 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 4, 8, 0, 0, 0, 0, 4, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, -4 )
 }
 
 [node name="RailsStraight" instance=ExtResource( 1 )]
-z_index = 9
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 4, 4 )
-z_index = 0
 texture = ExtResource( 2 )
 
 [node name="MovementPath" parent="." index="1"]
 curve = SubResource( 1 )
 
 [node name="NewRailOrigin" parent="." index="2"]
-position = Vector2( 4, 4 )
+position = Vector2( 0, -4 )
 
 [node name="CollisionShape2D" parent="OnRailArea" index="0"]
-position = Vector2( 4, 4 )
+position = Vector2( 0, 0 )

@@ -1,9 +1,70 @@
 extends Node2D
 
+
+# The player traverses move_speed tiles per second
+export var move_speed := 1.5
+
 var current_rails: Node2D
 var next_rails: Node2D
 
+export(NodePath) var initial_last_rails
+onready var last_set_rails: Node2D = get_node(initial_last_rails)
+onready var last_set_direction = Direction.STRAIGHT
+
 var current_rails_progress := 0.0
+
+enum Direction {
+	STRAIGHT,
+	LEFT,
+	RIGHT
+}
+
+var rails_scenes = {
+	Direction.STRAIGHT: preload("res://Rails/RailsStraight.tscn"),
+	Direction.LEFT: preload("res://Rails/RailsLeft.tscn"),
+	Direction.RIGHT: preload("res://Rails/RailsRight.tscn")
+}
+
+
+func _instance_new_rails(direction):
+	var new_rails = rails_scenes[direction].instance()
+	
+	var next_rail_position_local = last_set_rails.get_node("NewRailOrigin").position
+	
+	if last_set_direction == Direction.RIGHT:
+		next_rail_position_local += Vector2(4, 0)
+	elif last_set_direction == Direction.LEFT:
+		next_rail_position_local += Vector2(-4, 0)
+	else:
+		next_rail_position_local += Vector2(0, -4)
+	
+	new_rails.rotation = last_set_rails.rotation
+	
+	if last_set_direction == Direction.LEFT:
+		new_rails.rotation -= PI / 2.0
+	elif last_set_direction == Direction.RIGHT:
+		new_rails.rotation += PI / 2.0
+	
+	# To global
+	var next_rail_position_global = last_set_rails.to_global(next_rail_position_local)
+	
+	new_rails.position = next_rail_position_global
+	
+	get_parent().add_child(new_rails)
+	
+	last_set_rails = new_rails
+	last_set_direction = direction
+
+
+func _input(event):
+	if event.is_action_pressed("set_straight"):
+		_instance_new_rails(Direction.STRAIGHT)
+	
+	elif event.is_action_pressed("set_right"):
+		_instance_new_rails(Direction.RIGHT)
+	
+	elif event.is_action_pressed("set_left"):
+		_instance_new_rails(Direction.LEFT)
 
 
 func _get_colliding_rails_of_area(area: Area2D):
@@ -46,4 +107,4 @@ func _process(delta):
 	position = _get_position_for_rails(current_rails, current_rails_progress)
 	rotation = position.angle_to_point(_get_position_for_rails(current_rails, current_rails_progress + 0.1))
 	
-	current_rails_progress += delta
+	current_rails_progress += delta * move_speed
