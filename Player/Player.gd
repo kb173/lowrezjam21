@@ -26,29 +26,35 @@ var rails_scenes = {
 }
 
 
+func _get_new_rails_position() -> Vector2:
+	var position_local = last_set_rails.get_node("NewRailOrigin").position
+	
+	if last_set_direction == Direction.RIGHT:
+		position_local += Vector2(4, 0)
+	elif last_set_direction == Direction.LEFT:
+		position_local += Vector2(-4, 0)
+	else:
+		position_local += Vector2(0, -4)
+	
+	return last_set_rails.to_global(position_local)
+
+
+func _get_new_rails_rotation() -> float:
+	var new_rotation = last_set_rails.rotation
+	
+	if last_set_direction == Direction.LEFT:
+		new_rotation -= PI / 2.0
+	elif last_set_direction == Direction.RIGHT:
+		new_rotation += PI / 2.0
+	
+	return new_rotation
+
+
 func _instance_new_rails(direction):
 	var new_rails = rails_scenes[direction].instance()
 	
-	var next_rail_position_local = last_set_rails.get_node("NewRailOrigin").position
-	
-	if last_set_direction == Direction.RIGHT:
-		next_rail_position_local += Vector2(4, 0)
-	elif last_set_direction == Direction.LEFT:
-		next_rail_position_local += Vector2(-4, 0)
-	else:
-		next_rail_position_local += Vector2(0, -4)
-	
-	new_rails.rotation = last_set_rails.rotation
-	
-	if last_set_direction == Direction.LEFT:
-		new_rails.rotation -= PI / 2.0
-	elif last_set_direction == Direction.RIGHT:
-		new_rails.rotation += PI / 2.0
-	
-	# To global
-	var next_rail_position_global = last_set_rails.to_global(next_rail_position_local)
-	
-	new_rails.position = next_rail_position_global
+	new_rails.position = _get_new_rails_position()
+	new_rails.rotation = _get_new_rails_rotation()
 	
 	get_parent().add_child(new_rails)
 	

@@ -6,7 +6,7 @@
 [sub_resource type="Curve2D" id=1]
 bake_interval = 0.5
 _data = {
-"points": PoolVector2Array( -0.0662913, 3.27056, 0.0662913, -3.27056, 0, 4, 3.14385, -0.0630969, -3.14385, 0.0630969, -4, 0 )
+"points": PoolVector2Array( 0.00131396, 2.01723, -0.00131396, -2.01723, 0, 4, 1.98966, -0.0202167, -1.98966, 0.0202167, -4, 0 )
 }
 
 [node name="RailsLeft" instance=ExtResource( 2 )]
