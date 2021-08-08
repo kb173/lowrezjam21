@@ -5,7 +5,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Obstacles/Tree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Audio/bird_ambience.ogg" type="AudioStream" id=5]
-[ext_resource path="res://Obstacles/Cow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Obstacles/MovingCow.tscn" type="PackedScene" id=6]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Grass"
@@ -57,9 +57,10 @@ initial_last_rails = NodePath("../RailsStraight3")
 [node name="Tree" parent="." instance=ExtResource( 4 )]
 position = Vector2( 36, 20 )
 
-[node name="Cow" parent="." instance=ExtResource( 6 )]
-position = Vector2( 52, 36 )
-
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 autoplay = true
+
+[node name="MovingCow" parent="." instance=ExtResource( 6 )]
+position = Vector2( 16, -4 )
+direction = 1
