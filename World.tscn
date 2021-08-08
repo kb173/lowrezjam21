@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/Graphics/grass.png" type="Texture" id=1]
 [ext_resource path="res://Rails/RailsStraight.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Obstacles/Tree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Audio/bird_ambience.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Obstacles/Cow.tscn" type="PackedScene" id=6]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Grass"
@@ -59,3 +60,6 @@ position = Vector2( 36, 20 )
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 autoplay = true
+
+[node name="Cow" parent="Ambience" instance=ExtResource( 6 )]
+position = Vector2( 52, 36 )
