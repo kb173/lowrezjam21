@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 4 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 3.0
 
 [node name="Rails" type="Node2D" groups=[
 "Rails",
@@ -20,3 +23,10 @@ curve = null
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OnRailArea"]
 position = Vector2( 8, 8 )
 shape = SubResource( 1 )
+
+[node name="BlockArea" type="Area2D" parent="." groups=[
+"RailBlocker",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockArea"]
+shape = SubResource( 2 )
