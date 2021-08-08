@@ -57,9 +57,9 @@ initial_last_rails = NodePath("../RailsStraight3")
 [node name="Tree" parent="." instance=ExtResource( 4 )]
 position = Vector2( 36, 20 )
 
+[node name="Cow" parent="." instance=ExtResource( 6 )]
+position = Vector2( 52, 36 )
+
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 autoplay = true
-
-[node name="Cow" parent="Ambience" instance=ExtResource( 6 )]
-position = Vector2( 52, 36 )
