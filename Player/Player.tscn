@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Resources/Graphics/train_front.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Audio/train_1.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Resources/Audio/train_2.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Player/TrainAudio.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 0.5, 0.5 )
@@ -41,3 +44,12 @@ current = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransformReset/NewRailsProbe"]
 shape = SubResource( 2 )
+
+[node name="TrainAudio" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Audio1" type="AudioStreamPlayer" parent="TrainAudio"]
+stream = ExtResource( 3 )
+
+[node name="Audio2" type="AudioStreamPlayer" parent="TrainAudio"]
+stream = ExtResource( 4 )
