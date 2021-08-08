@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Graphics/grass.png" type="Texture" id=1]
 [ext_resource path="res://Rails/RailsStraight.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Obstacles/Tree.tscn" type="PackedScene" id=4]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Grass"
@@ -50,3 +51,6 @@ script = SubResource( 2 )
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 36, 60 )
 initial_last_rails = NodePath("../RailsStraight3")
+
+[node name="Tree" parent="." instance=ExtResource( 4 )]
+position = Vector2( 36, 20 )

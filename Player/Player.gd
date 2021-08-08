@@ -60,17 +60,31 @@ func _instance_new_rails(direction):
 	
 	last_set_rails = new_rails
 	last_set_direction = direction
+	
+	# Probe at the point of the next rails for whether something can be placed there
+	$TransformReset/NewRailsProbe.global_position = _get_new_rails_position()
+
+
+func _can_set_rails():
+	var probe_overlaps = $TransformReset/NewRailsProbe.get_overlapping_areas()
+	
+	for area in probe_overlaps:
+		if area.is_in_group("RailBlocker"):
+			return false
+	
+	return true
 
 
 func _input(event):
-	if event.is_action_pressed("set_straight"):
-		_instance_new_rails(Direction.STRAIGHT)
-	
-	elif event.is_action_pressed("set_right"):
-		_instance_new_rails(Direction.RIGHT)
-	
-	elif event.is_action_pressed("set_left"):
-		_instance_new_rails(Direction.LEFT)
+	if _can_set_rails():
+		if event.is_action_pressed("set_straight"):
+			_instance_new_rails(Direction.STRAIGHT)
+		
+		elif event.is_action_pressed("set_right"):
+			_instance_new_rails(Direction.RIGHT)
+		
+		elif event.is_action_pressed("set_left"):
+			_instance_new_rails(Direction.LEFT)
 
 
 func _get_colliding_rails_of_area(area: Area2D):
