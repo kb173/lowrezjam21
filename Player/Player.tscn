@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Resources/Graphics/train_front.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Resources/Audio/train_2.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Player/TrainAudio.gd" type="Script" id=5]
 [ext_resource path="res://Resources/Audio/train_3.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Resources/Graphics/wagon.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 0.5, 0.5 )
@@ -20,7 +21,15 @@ extents = Vector2( 4, 4 )
 z_index = 10
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Wagons" type="Node2D" parent="."]
+
+[node name="Wagon1" type="Sprite" parent="Wagons"]
+texture = ExtResource( 7 )
+
+[node name="Wagon2" type="Sprite" parent="Wagons"]
+texture = ExtResource( 7 )
+
+[node name="Engine" type="Sprite" parent="."]
 rotation = 4.71238
 texture = ExtResource( 1 )
 

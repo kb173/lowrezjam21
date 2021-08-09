@@ -4,6 +4,7 @@ extends Node2D
 # The player traverses move_speed tiles per second
 export var move_speed := 1.5
 
+var last_rails := []
 var current_rails: Node2D
 var next_rails: Node2D
 
@@ -112,6 +113,8 @@ func _get_position_for_rails(rails_node, interpolate_position):
 
 func _process(delta):
 	if current_rails_progress >= 1.0:
+		last_rails.push_front(current_rails)
+		
 		current_rails = get_next_rails()
 		current_rails_progress -= 1.0
 	
@@ -126,5 +129,16 @@ func _process(delta):
 	# Update position and rotation
 	position = _get_position_for_rails(current_rails, current_rails_progress)
 	rotation = position.angle_to_point(_get_position_for_rails(current_rails, current_rails_progress + 0.1))
+	
+	# Same for wagons
+	if last_rails.size() >= $Wagons.get_child_count():
+		var wagon_index = 0
+		for wagon in $Wagons.get_children():
+			var wagon_rails = last_rails[wagon_index]
+			
+			wagon.global_position = _get_position_for_rails(wagon_rails, current_rails_progress)
+			wagon.global_rotation = -PI/2 + wagon.global_position.angle_to_point(_get_position_for_rails(wagon_rails, current_rails_progress + 0.1))
+			
+			wagon_index += 1
 	
 	current_rails_progress += delta * move_speed
