@@ -5,11 +5,16 @@ code = "shader_type canvas_item;
 render_mode skip_vertex_transform;
 
 void vertex() {
-	vec4 pos = WORLD_MATRIX[3];
-	mat4 new_matrix = mat4(length(WORLD_MATRIX[0]));
-	new_matrix[3] = pos;
+	vec4 position = WORLD_MATRIX[3];
+	float scale = length(WORLD_MATRIX[0]);
+	
+	mat4 new_matrix = mat4(scale);
+	new_matrix[3] = position;
+	
 	VERTEX = (EXTRA_MATRIX * (new_matrix * vec4(VERTEX, 0.0, 1.0))).xy;
-}"
+}
+
+"
 
 [resource]
 shader = SubResource( 1 )
