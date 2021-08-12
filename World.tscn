@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Resources/Graphics/grass.png" type="Texture" id=1]
 [ext_resource path="res://Rails/RailsStraight.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Obstacles/MovingCow.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Resources/Audio/music.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Obstacles/TrainStation.tscn" type="PackedScene" id=8]
+[ext_resource path="res://UI/MainUI.tscn" type="PackedScene" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Grass"
@@ -52,9 +53,6 @@ position = Vector2( 36, 60 )
 z_index = 0
 script = SubResource( 2 )
 
-[node name="TrainStation" parent="RailsStraight" instance=ExtResource( 8 )]
-position = Vector2( 16, -52 )
-
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 36, 60 )
 initial_last_rails = NodePath("../RailsStraight3")
@@ -74,3 +72,10 @@ direction = 1
 stream = ExtResource( 7 )
 volume_db = -4.0
 autoplay = true
+
+[node name="TrainStation" parent="." instance=ExtResource( 8 )]
+position = Vector2( 68, 0 )
+
+[node name="MainUI" parent="." instance=ExtResource( 9 )]
+player_node_path = NodePath("../Player")
+current_train_station_node = NodePath("../TrainStation")
