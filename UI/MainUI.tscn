@@ -9,6 +9,7 @@ script = ExtResource( 2 )
 [node name="PlayerArrow" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_pivot_offset = Vector2( 2.5, 2.5 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

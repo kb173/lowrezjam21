@@ -8,6 +8,8 @@ var last_rails := []
 var current_rails: Node2D
 var next_rails: Node2D
 
+var moving := true
+
 export(NodePath) var initial_last_rails
 onready var last_set_rails: Node2D = get_node(initial_last_rails)
 onready var last_set_direction = Direction.STRAIGHT
@@ -26,6 +28,19 @@ var rails_scenes = {
 	Direction.RIGHT: preload("res://Rails/RailsRight.tscn")
 }
 
+
+func _ready():
+	$CurrentRailsArea.connect("area_entered", self, "_on_current_area_entered")
+
+
+func _on_current_area_entered(other):
+	if other.is_in_group("TrainStopper"):
+		# Stop at train stations
+		moving = false
+		
+		yield(get_tree().create_timer(2.0), "timeout")
+		
+		moving = true
 
 func _get_new_rails_position() -> Vector2:
 	var position_local = last_set_rails.get_node("NewRailOrigin").position
@@ -141,4 +156,5 @@ func _process(delta):
 			
 			wagon_index += 1
 	
-	current_rails_progress += delta * move_speed
+	if moving:
+		current_rails_progress += delta * move_speed

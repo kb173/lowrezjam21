@@ -73,9 +73,11 @@ stream = ExtResource( 7 )
 volume_db = -4.0
 autoplay = true
 
-[node name="TrainStation" parent="." instance=ExtResource( 8 )]
-position = Vector2( 68, 0 )
-
 [node name="MainUI" parent="." instance=ExtResource( 9 )]
 player_node_path = NodePath("../Player")
-current_train_station_node = NodePath("../TrainStation")
+current_train_station_node = NodePath("../TrainStations/TrainStation")
+
+[node name="TrainStations" type="Node2D" parent="."]
+
+[node name="TrainStation" parent="TrainStations" instance=ExtResource( 8 )]
+position = Vector2( 68, 0 )
