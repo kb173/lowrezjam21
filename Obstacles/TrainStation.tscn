@@ -3,12 +3,13 @@
 [ext_resource path="res://Resources/Graphics/railstation.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4, 8 )
+extents = Vector2( 4, 12 )
 
 [sub_resource type="RayShape2D" id=2]
 length = 8.0
 
 [node name="TrainStation" type="Node2D"]
+rotation = 0.00233585
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -24,8 +25,26 @@ shape = SubResource( 1 )
 [node name="StopArea" type="Area2D" parent="." groups=[
 "TrainStopper",
 ]]
-position = Vector2( 0, -12 )
+position = Vector2( -0.0186868, -7.99998 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StopArea"]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="SlowArea" type="Area2D" parent="." groups=[
+"TrainSlower",
+]]
+position = Vector2( 0.0186868, 7.99998 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlowArea"]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="FastArea" type="Area2D" parent="." groups=[
+"TrainFaster",
+]]
+position = Vector2( -0.046717, -19.9999 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FastArea"]
 rotation = 1.5708
 shape = SubResource( 2 )

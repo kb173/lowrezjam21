@@ -15,6 +15,7 @@ onready var last_set_rails: Node2D = get_node(initial_last_rails)
 onready var last_set_direction = Direction.STRAIGHT
 
 var current_rails_progress := 0.0
+var current_move_speed = move_speed
 
 enum Direction {
 	STRAIGHT,
@@ -31,16 +32,27 @@ var rails_scenes = {
 
 func _ready():
 	$CurrentRailsArea.connect("area_entered", self, "_on_current_area_entered")
+	
+	# Initial next rail probe placement
+	$TransformReset/NewRailsProbe.global_position = _get_new_rails_position()
 
 
 func _on_current_area_entered(other):
 	if other.is_in_group("TrainStopper"):
 		# Stop at train stations
 		moving = false
+		$TrainAudio.play_ambience()
 		
-		yield(get_tree().create_timer(2.0), "timeout")
+		yield(get_tree().create_timer(5.0), "timeout")
 		
 		moving = true
+		$TrainAudio.play_transition()
+	elif other.is_in_group("TrainSlower"):
+		current_move_speed = move_speed / 2.0
+		$TrainAudio.play_transition()
+	elif other.is_in_group("TrainFaster"):
+		current_move_speed = move_speed
+		$TrainAudio.play_moving()
 
 func _get_new_rails_position() -> Vector2:
 	var position_local = last_set_rails.get_node("NewRailOrigin").position
@@ -157,4 +169,4 @@ func _process(delta):
 			wagon_index += 1
 	
 	if moving:
-		current_rails_progress += delta * move_speed
+		current_rails_progress += delta * current_move_speed
