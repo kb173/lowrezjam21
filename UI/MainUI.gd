@@ -20,7 +20,7 @@ func _get_next_train_station():
 	else:
 		$PlayerArrow.visible = false
 		processing = false
-		print("WIN") # TODO
+		player_node.win()
 
 
 func _process(delta):

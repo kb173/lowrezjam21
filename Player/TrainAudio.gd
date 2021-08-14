@@ -30,6 +30,9 @@ func play_ambience():
 	for move_child in $MoveAudio.get_children():
 		move_child.volume_db = -INF
 	
+	if not $StationAudio.playing:
+		$StationAudio.play(randf() * $StationAudio.stream.get_length())
+	
 	$StationAudio.volume_db = 0.0
 
 

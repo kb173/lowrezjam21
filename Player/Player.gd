@@ -18,6 +18,7 @@ var current_rails_progress := 0.0
 var current_move_speed = move_speed
 
 var last_checkpoint
+var has_won = false
 
 enum Direction {
 	STRAIGHT,
@@ -64,12 +65,15 @@ func _on_current_area_entered(other):
 		# Stop at train stations
 		moving = false
 		$TrainAudio.play_ambience()
+		
+		yield(get_tree().create_timer(0.5), "timeout")
 		create_new_checkpoint()
 		
 		yield(get_tree().create_timer(5.0), "timeout")
 		
-		moving = true
-		$TrainAudio.play_transition()
+		if not has_won:
+			moving = true
+			$TrainAudio.play_transition()
 	elif other.is_in_group("TrainSlower"):
 		current_move_speed = move_speed / 2.0
 		$TrainAudio.play_transition()
@@ -126,7 +130,7 @@ func _can_set_rails():
 		if area.is_in_group("RailBlocker"):
 			return false
 	
-	return true
+	return not has_won
 
 
 func _input(event):
@@ -163,15 +167,25 @@ func get_next_rails():
 
 
 func lose():
-	print("LOSE") # TODO
+	$OverlayUI/GameOver.visible = true
 	moving = false
 	
 	yield(get_tree().create_timer(1.0), "timeout")
 	
 	apply_last_checkpoint()
+	$OverlayUI/GameOver.visible = false
+	
 	yield(get_tree().create_timer(0.2), "timeout")
 	
 	moving = true
+
+
+func win():
+	yield(get_tree().create_timer(3.0), "timeout")
+	moving = false
+	set_process(false)
+	$OverlayUI/GameOverWin.visible = true
+	has_won = true
 
 
 func create_new_checkpoint():
