@@ -178,33 +178,33 @@ position = Vector2( -220, -124 )
 rotation = 0.0
 
 [node name="TrainStation5" parent="TrainStations" instance=ExtResource( 8 )]
-position = Vector2( -108, -272 )
+position = Vector2( -108, -268 )
 rotation = 0.0
 
 [node name="TrainStation6" parent="TrainStations" instance=ExtResource( 8 )]
-position = Vector2( -80, -420 )
+position = Vector2( -76, -420 )
 rotation = 0.0
 
 [node name="MovingCow2" parent="." instance=ExtResource( 6 )]
 position = Vector2( -156, -180 )
 
 [node name="MovingCow3" parent="." instance=ExtResource( 6 )]
-position = Vector2( -88, -356 )
+position = Vector2( -88, -364 )
 
 [node name="Tree6" parent="." instance=ExtResource( 4 )]
 position = Vector2( -116, -188 )
 
 [node name="Tree7" parent="." instance=ExtResource( 4 )]
-position = Vector2( -108, -208 )
+position = Vector2( -108, -204 )
 
 [node name="Tree8" parent="." instance=ExtResource( 4 )]
-position = Vector2( -124, -216 )
+position = Vector2( -124, -212 )
 
 [node name="Tree9" parent="." instance=ExtResource( 4 )]
-position = Vector2( -116, -232 )
+position = Vector2( -116, -228 )
 
 [node name="Tree10" parent="." instance=ExtResource( 4 )]
-position = Vector2( -116, -248 )
+position = Vector2( -116, -244 )
 
 [node name="Border" type="Node2D" parent="."]
 
@@ -314,37 +314,40 @@ position = Vector2( -88, -256 )
 position = Vector2( -88, -288 )
 
 [node name="Forest58" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -72, -320 )
+position = Vector2( -64, -320 )
 
 [node name="Forest61" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -60, -352 )
+position = Vector2( -56, -352 )
 
 [node name="Forest62" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -60, -384 )
+position = Vector2( -56, -384 )
 
 [node name="Forest64" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -60, -416 )
+position = Vector2( -56, -416 )
 
 [node name="Forest65" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -76, -448 )
+position = Vector2( -72, -448 )
+
+[node name="Forest70" parent="Border" instance=ExtResource( 10 )]
+position = Vector2( -40, -448 )
 
 [node name="Forest68" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -108, -448 )
+position = Vector2( -104, -448 )
 
 [node name="Forest66" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -140, -432 )
+position = Vector2( -136, -432 )
 
 [node name="Forest67" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -140, -400 )
+position = Vector2( -136, -400 )
 
 [node name="Forest59" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -204, -336 )
+position = Vector2( -168, -368 )
 
 [node name="Forest60" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -172, -336 )
+position = Vector2( -168, -336 )
 
 [node name="Forest63" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -140, -368 )
+position = Vector2( -136, -368 )
 
 [node name="Forest35" parent="Border" instance=ExtResource( 10 )]
 position = Vector2( -136, -48 )
@@ -392,10 +395,10 @@ position = Vector2( -144, -208 )
 position = Vector2( -144, -240 )
 
 [node name="Forest55" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -156, -272 )
+position = Vector2( -160, -272 )
 
 [node name="Forest56" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -156, -304 )
+position = Vector2( -160, -304 )
 
 [node name="Forest40" parent="Border" instance=ExtResource( 10 )]
 position = Vector2( -200, -128 )
@@ -570,7 +573,7 @@ texture = ExtResource( 16 )
 polygon = PoolVector2Array( -136, -72, -120, -72, -120, -80, -112, -80, -112, -88, -104, -88, -96, -88, -96, -96, -88, -96, -88, -120, -96, -120, -96, -128, -128, -128, -128, -112, -144, -112, -144, -88, -136, -88 )
 
 [node name="Lake2" type="Node2D" parent="."]
-position = Vector2( -120, -368 )
+position = Vector2( -116, -368 )
 
 [node name="water_bottom" type="Sprite" parent="Lake2"]
 position = Vector2( 24, 44 )
@@ -603,6 +606,34 @@ texture = ExtResource( 12 )
 [node name="water_left_bottom2" type="Sprite" parent="Lake2"]
 position = Vector2( -8, 36 )
 texture = ExtResource( 14 )
+
+[node name="water" type="Sprite" parent="Lake2"]
+position = Vector2( 0, 36 )
+texture = ExtResource( 16 )
+
+[node name="water2" type="Sprite" parent="Lake2"]
+position = Vector2( 8, 36 )
+texture = ExtResource( 16 )
+
+[node name="water3" type="Sprite" parent="Lake2"]
+position = Vector2( 16, 36 )
+texture = ExtResource( 16 )
+
+[node name="water4" type="Sprite" parent="Lake2"]
+position = Vector2( 24, 36 )
+texture = ExtResource( 16 )
+
+[node name="water5" type="Sprite" parent="Lake2"]
+position = Vector2( 16, 28 )
+texture = ExtResource( 16 )
+
+[node name="water6" type="Sprite" parent="Lake2"]
+position = Vector2( 24, 28 )
+texture = ExtResource( 16 )
+
+[node name="water7" type="Sprite" parent="Lake2"]
+position = Vector2( 32, 28 )
+texture = ExtResource( 16 )
 
 [node name="water_left_top" type="Sprite" parent="Lake2"]
 position = Vector2( -8, 28 )
@@ -640,13 +671,16 @@ texture = ExtResource( 18 )
 polygon = PoolVector2Array( 12, 16, 44, 16, 44, 32, 36, 32, 36, 48, -4, 48, -4, 40, -12, 40, -12, 24, 12, 24 )
 
 [node name="Tree11" parent="." instance=ExtResource( 4 )]
-position = Vector2( -144, -336 )
+position = Vector2( -140, -332 )
 
 [node name="Tree12" parent="." instance=ExtResource( 4 )]
-position = Vector2( -88, -392 )
+position = Vector2( -84, -396 )
+
+[node name="Tree13" parent="." instance=ExtResource( 4 )]
+position = Vector2( -100, -412 )
 
 [node name="Lake3" type="Node2D" parent="."]
-position = Vector2( -96, -380 )
+position = Vector2( -92, -380 )
 
 [node name="water_left_bottom" type="Sprite" parent="Lake3"]
 position = Vector2( -24, 8 )
@@ -706,6 +740,30 @@ texture = ExtResource( 15 )
 [node name="water_left5" type="Sprite" parent="Lake3"]
 position = Vector2( -24, 0 )
 texture = ExtResource( 15 )
+
+[node name="water" type="Sprite" parent="Lake3"]
+position = Vector2( -16, 0 )
+texture = ExtResource( 16 )
+
+[node name="water3" type="Sprite" parent="Lake3"]
+position = Vector2( -8, -8 )
+texture = ExtResource( 16 )
+
+[node name="water4" type="Sprite" parent="Lake3"]
+position = Vector2( -8, -16 )
+texture = ExtResource( 16 )
+
+[node name="water5" type="Sprite" parent="Lake3"]
+position = Vector2( -16, -16 )
+texture = ExtResource( 16 )
+
+[node name="water6" type="Sprite" parent="Lake3"]
+position = Vector2( -16, -24 )
+texture = ExtResource( 16 )
+
+[node name="water2" type="Sprite" parent="Lake3"]
+position = Vector2( -16, -8 )
+texture = ExtResource( 16 )
 
 [node name="Area2D" type="Area2D" parent="Lake3" groups=[
 "RailBlocker",

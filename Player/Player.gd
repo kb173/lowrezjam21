@@ -52,7 +52,6 @@ class Checkpoint:
 		self.last_set_direction = last_set_direction
 
 
-
 func _ready():
 	$CurrentRailsArea.connect("area_entered", self, "_on_current_area_entered")
 	
