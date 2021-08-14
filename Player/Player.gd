@@ -2,7 +2,7 @@ extends Node2D
 
 
 # The player traverses move_speed tiles per second
-export var move_speed := 1.5
+export var move_speed := 2.0
 
 var last_rails := []
 var current_rails: Node2D
@@ -17,6 +17,8 @@ onready var last_set_direction = Direction.STRAIGHT
 var current_rails_progress := 0.0
 var current_move_speed = move_speed
 
+var last_checkpoint
+
 enum Direction {
 	STRAIGHT,
 	LEFT,
@@ -28,6 +30,26 @@ var rails_scenes = {
 	Direction.LEFT: preload("res://Rails/RailsLeft.tscn"),
 	Direction.RIGHT: preload("res://Rails/RailsRight.tscn")
 }
+
+class Checkpoint:
+	var position
+	var rotation
+	var placed_since_here = []
+	var last_rails = []
+	var current_rails
+	var next_rails
+	var last_set_rails
+	var last_set_direction
+	
+	func _init(position, rotation, current_rails, next_rails, last_rails, last_set_rails, last_set_direction):
+		self.position = position
+		self.rotation = rotation
+		self.current_rails = current_rails
+		self.next_rails = next_rails
+		self.last_rails = last_rails
+		self.last_set_rails = last_set_rails
+		self.last_set_direction = last_set_direction
+
 
 
 func _ready():
@@ -42,6 +64,7 @@ func _on_current_area_entered(other):
 		# Stop at train stations
 		moving = false
 		$TrainAudio.play_ambience()
+		create_new_checkpoint()
 		
 		yield(get_tree().create_timer(5.0), "timeout")
 		
@@ -53,6 +76,8 @@ func _on_current_area_entered(other):
 	elif other.is_in_group("TrainFaster"):
 		current_move_speed = move_speed
 		$TrainAudio.play_moving()
+	elif other.is_in_group("LoseArea"):
+		lose()
 
 func _get_new_rails_position() -> Vector2:
 	var position_local = last_set_rails.get_node("NewRailOrigin").position
@@ -85,6 +110,7 @@ func _instance_new_rails(direction):
 	new_rails.rotation = _get_new_rails_rotation()
 	
 	get_parent().add_child(new_rails)
+	last_checkpoint.placed_since_here.append(new_rails)
 	
 	last_set_rails = new_rails
 	last_set_direction = direction
@@ -128,7 +154,45 @@ func get_current_rails():
 
 
 func get_next_rails():
-	return _get_colliding_rails_of_area($FutureRailsArea)
+	var future_rails = _get_colliding_rails_of_area($FutureRailsArea)
+	if future_rails:
+		return future_rails
+	else:
+		lose()
+		return null
+
+
+func lose():
+	print("LOSE") # TODO
+	moving = false
+	
+	yield(get_tree().create_timer(1.0), "timeout")
+	
+	apply_last_checkpoint()
+	yield(get_tree().create_timer(0.2), "timeout")
+	
+	moving = true
+
+
+func create_new_checkpoint():
+	last_checkpoint = Checkpoint.new(global_position, global_rotation, current_rails, next_rails, last_rails.duplicate(), last_set_rails, last_set_direction)
+
+
+func apply_last_checkpoint():
+	global_position = last_checkpoint.position
+	global_rotation = last_checkpoint.rotation
+	current_rails = last_checkpoint.current_rails
+	next_rails = last_checkpoint.next_rails
+	last_rails = last_checkpoint.last_rails
+	last_set_rails = last_checkpoint.last_set_rails
+	last_set_direction = last_checkpoint.last_set_direction
+	
+	$TransformReset/NewRailsProbe.global_position = _get_new_rails_position()
+	
+	for node in last_checkpoint.placed_since_here:
+		node.queue_free()
+	
+	create_new_checkpoint()
 
 
 func _get_position_for_rails(rails_node, interpolate_position):
@@ -139,11 +203,14 @@ func _get_position_for_rails(rails_node, interpolate_position):
 
 
 func _process(delta):
+	if not moving: return
+	
 	if current_rails_progress >= 1.0:
 		last_rails.push_front(current_rails)
 		
 		current_rails = get_next_rails()
-		current_rails_progress -= 1.0
+		if current_rails:
+			current_rails_progress -= 1.0
 	
 	# For the first launch (and end): get the current rail as soon as it's available; if it isn't, return
 	# (For some reason it can take 1 frame until the rail is found)
@@ -155,7 +222,9 @@ func _process(delta):
 	
 	# Update position and rotation
 	position = _get_position_for_rails(current_rails, current_rails_progress)
-	rotation = position.angle_to_point(_get_position_for_rails(current_rails, current_rails_progress + 0.1))
+	
+	if current_rails_progress < 0.99:
+		rotation = position.angle_to_point(_get_position_for_rails(current_rails, current_rails_progress + 0.1))
 	
 	# Same for wagons
 	if last_rails.size() >= $Wagons.get_child_count():
@@ -168,5 +237,8 @@ func _process(delta):
 			
 			wagon_index += 1
 	
-	if moving:
-		current_rails_progress += delta * current_move_speed
+	current_rails_progress += delta * current_move_speed
+	
+	# Relevant for the end of the first frame
+	if not last_checkpoint:
+		create_new_checkpoint()
