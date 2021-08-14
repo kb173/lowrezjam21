@@ -43,7 +43,7 @@ shape = SubResource( 2 )
 [node name="FastArea" type="Area2D" parent="." groups=[
 "TrainFaster",
 ]]
-position = Vector2( -0.046717, -19.9999 )
+position = Vector2( -0.0373736, -16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FastArea"]
 rotation = 1.5708

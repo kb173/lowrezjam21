@@ -121,8 +121,28 @@ position = Vector2( 36, 156 )
 z_index = 0
 script = SubResource( 2 )
 
+[node name="RailsStraight16" parent="." instance=ExtResource( 2 )]
+position = Vector2( 36, 164 )
+z_index = 0
+script = SubResource( 2 )
+
+[node name="RailsStraight17" parent="." instance=ExtResource( 2 )]
+position = Vector2( 36, 172 )
+z_index = 0
+script = SubResource( 2 )
+
+[node name="RailsStraight18" parent="." instance=ExtResource( 2 )]
+position = Vector2( 36, 180 )
+z_index = 0
+script = SubResource( 2 )
+
+[node name="RailsStraight19" parent="." instance=ExtResource( 2 )]
+position = Vector2( 36, 188 )
+z_index = 0
+script = SubResource( 2 )
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 36, 108 )
+position = Vector2( 36, 144 )
 initial_last_rails = NodePath("../RailsStraight2")
 
 [node name="Tree" parent="." instance=ExtResource( 4 )]
@@ -139,17 +159,20 @@ autoplay = true
 
 [node name="MainUI" parent="." instance=ExtResource( 9 )]
 player_node_path = NodePath("../Player")
-current_train_station_node = NodePath("../TrainStations/TrainStation")
+train_stations_path = NodePath("../TrainStations")
 
 [node name="TrainStations" type="Node2D" parent="."]
 
 [node name="TrainStation" parent="TrainStations" instance=ExtResource( 8 )]
-position = Vector2( 68, 0 )
+position = Vector2( 44, 76 )
+
+[node name="TrainStation2" parent="TrainStations" instance=ExtResource( 8 )]
+position = Vector2( 68, -4 )
 
 [node name="Border" type="Node2D" parent="."]
 
 [node name="Forest" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( 16, 80 )
+position = Vector2( -16, 112 )
 
 [node name="Forest14" parent="Border" instance=ExtResource( 10 )]
 position = Vector2( 16, 112 )
@@ -163,14 +186,20 @@ position = Vector2( 56, 144 )
 [node name="Forest17" parent="Border" instance=ExtResource( 10 )]
 position = Vector2( 16, 144 )
 
+[node name="Forest18" parent="Border" instance=ExtResource( 10 )]
+position = Vector2( 16, 176 )
+
+[node name="Forest19" parent="Border" instance=ExtResource( 10 )]
+position = Vector2( 56, 176 )
+
 [node name="Forest2" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( 56, 80 )
+position = Vector2( 88, 112 )
 
 [node name="Forest3" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( 88, 80 )
+position = Vector2( 68, 80 )
 
 [node name="Forest4" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( 88, 48 )
+position = Vector2( 68, 48 )
 
 [node name="Forest5" parent="Border" instance=ExtResource( 10 )]
 position = Vector2( 88, 16 )
@@ -179,10 +208,10 @@ position = Vector2( 88, 16 )
 position = Vector2( 88, -16 )
 
 [node name="Forest7" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -16, 80 )
+position = Vector2( 8, 80 )
 
 [node name="Forest8" parent="Border" instance=ExtResource( 10 )]
-position = Vector2( -4, 48 )
+position = Vector2( 8, 48 )
 
 [node name="Forest9" parent="Border" instance=ExtResource( 10 )]
 position = Vector2( 8, 16 )
