@@ -2,7 +2,7 @@ extends Node2D
 
 
 # The player traverses move_speed tiles per second
-export var move_speed := 2.0
+export var move_speed := 1.0
 
 var last_rails := []
 var current_rails: Node2D
@@ -193,6 +193,8 @@ func create_new_checkpoint():
 
 
 func apply_last_checkpoint():
+	current_rails_progress = 0.0
+	
 	global_position = last_checkpoint.position
 	global_rotation = last_checkpoint.rotation
 	current_rails = last_checkpoint.current_rails
@@ -205,8 +207,6 @@ func apply_last_checkpoint():
 	
 	for node in last_checkpoint.placed_since_here:
 		node.queue_free()
-	
-	create_new_checkpoint()
 
 
 func _get_position_for_rails(rails_node, interpolate_position):
