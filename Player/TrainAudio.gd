@@ -26,6 +26,10 @@ func _play_random_move_track():
 	last_track_id = track_id
 
 
+func play_crash():
+	$CrashAudio.play()
+
+
 func play_ambience():
 	for move_child in $MoveAudio.get_children():
 		move_child.volume_db = -INF

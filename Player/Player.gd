@@ -167,10 +167,11 @@ func get_next_rails():
 
 
 func lose():
+	$TrainAudio.play_crash()
 	$OverlayUI/GameOver.visible = true
 	moving = false
 	
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(2.0), "timeout")
 	
 	apply_last_checkpoint()
 	$OverlayUI/GameOver.visible = false
@@ -181,7 +182,7 @@ func lose():
 
 
 func win():
-	yield(get_tree().create_timer(3.0), "timeout")
+	yield(get_tree().create_timer(4.0), "timeout")
 	moving = false
 	set_process(false)
 	$OverlayUI/GameOverWin.visible = true

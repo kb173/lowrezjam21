@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/train_crash.ogg-8a99737c7635c8bf0062af6f6aace68a.oggstr"
+
+[deps]
+
+source_file="res://Resources/Audio/train_crash.ogg"
+dest_files=[ "res://.import/train_crash.ogg-8a99737c7635c8bf0062af6f6aace68a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
